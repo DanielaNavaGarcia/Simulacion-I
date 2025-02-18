@@ -1,0 +1,121 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyOTLlFzBLWaANc85mKBrH20",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/DanielaNavaGarcia/Simulacion-I/blob/main/N%C3%BAmeros%20Aleatorios%20\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Números aleatorios\n"
+      ],
+      "metadata": {
+        "id": "_P89V43QVyUl"
+      }
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "Generador Congruencial\n",
+        "$$x_n+1 = (a*x_n +c) mod m $$;\n",
+        "\n",
+        "$$x_0, a, C, m$$ son constantes enteras"
+      ],
+      "metadata": {
+        "id": "GLTpHyMxZP8h"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        " import tabulate\n",
+        " a = 4; # cambiar valores a \"a\" y \"c\"\n",
+        " c = 7;\n",
+        " m = 22;\n",
+        " x_0 = 3;\n",
+        " n = 10;\n",
+        "\n",
+        "# Por iteración\n",
+        "\n",
+        "#for i in range(n):\n",
+        " #   x_1 = (a*x_0 + c ) % m;\n",
+        "  #  x_0 =  x_1;\n",
+        "   # print(x_1);\n",
+        "\n",
+        "\n",
+        "# Función Generadora\n",
+        "\n",
+        "def generador(a, c, m, x_0):\n",
+        "       x= (a*x_0 + c) % m;\n",
+        "       return x;\n",
+        "muestra=[]\n",
+        "datos=[]\n",
+        "\n",
+        "\n",
+        "for i in range(n):\n",
+        "    nuevo= generador(a, c, m, x_0);\n",
+        "    muestra.append([i,x_0,nuevo/m]);\n",
+        "    x_0=nuevo\n",
+        "encabezados=[\"i\",\"x_1\",\"x_{i+1}\"]\n",
+        "print(tabulate.tabulate(muestra, headers= encabezados));\n",
+        "\n",
+        "#print(generador(a, c, m, x_0));\n",
+        "\n",
+        "# Imprime las n iteraciones de la función\n",
+        "#for i in range(n):\n",
+        " #   x_0 = generador(a, c, m, x_0);\n",
+        "  #  print(x_0);\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "cUG2tsmwbx32",
+        "outputId": "e8939db9-ebbd-4071-d41b-e6e344ed565d"
+      },
+      "execution_count": 35,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "  i    x_1    x_{i+1}\n",
+            "---  -----  ---------\n",
+            "  0      3   0.863636\n",
+            "  1     19   0.772727\n",
+            "  2     17   0.409091\n",
+            "  3      9   0.954545\n",
+            "  4     21   0.136364\n",
+            "  5      3   0.863636\n",
+            "  6     19   0.772727\n",
+            "  7     17   0.409091\n",
+            "  8      9   0.954545\n",
+            "  9     21   0.136364\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
